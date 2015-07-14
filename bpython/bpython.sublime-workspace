@@ -1,0 +1,1204 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"is",
+				"isinstance"
+			],
+			[
+				"render",
+				"renderPipeline"
+			],
+			[
+				"wr",
+				"writeDirectory"
+			],
+			[
+				"Colli",
+				"CollisonTraverser"
+			],
+			[
+				"my",
+				"myTraverser"
+			],
+			[
+				"han",
+				"handlePickedObject"
+			],
+			[
+				"bug",
+				"bug_task"
+			],
+			[
+				"mil",
+				"milestone_map	statement"
+			],
+			[
+				"gh_",
+				"gh_owner	statement"
+			],
+			[
+				"as",
+				"assignee	statement"
+			],
+			[
+				"mile",
+				"milestone_map	statement"
+			],
+			[
+				"mie",
+				"milestone_map	statement"
+			],
+			[
+				"open",
+				"open_tasks	statement"
+			],
+			[
+				"new",
+				"new_password"
+			],
+			[
+				"bla",
+				"blacklist"
+			],
+			[
+				"server",
+				"server_name	''"
+			],
+			[
+				"in",
+				"in_message"
+			],
+			[
+				"con",
+				"connections	import"
+			],
+			[
+				"in_",
+				"in_source"
+			],
+			[
+				"g",
+				"get_user	function"
+			],
+			[
+				"out",
+				"out_message"
+			],
+			[
+				"reg",
+				"registered"
+			],
+			[
+				"ou",
+				"outgoing_message"
+			],
+			[
+				"command",
+				"command_list	statement"
+			],
+			[
+				"re",
+				"received_message"
+			],
+			[
+				"cre",
+				"create_connection"
+			],
+			[
+				"help",
+				"help_message	statement"
+			],
+			[
+				"user",
+				"user_name	statement"
+			],
+			[
+				"serv",
+				"server_name	param"
+			],
+			[
+				"ser",
+				"server_name	param"
+			],
+			[
+				"net",
+				"network	import"
+			],
+			[
+				"glitch",
+				"glitch	import"
+			],
+			[
+				"join",
+				"join_chatroom"
+			],
+			[
+				"hos",
+				"hostmasks"
+			],
+			[
+				"user_",
+				"user_object	forflow"
+			],
+			[
+				"__get",
+				"__getitem__	function"
+			],
+			[
+				"_get",
+				"_get_user	function"
+			],
+			[
+				"conn",
+				"connection_made"
+			],
+			[
+				"cr",
+				"create_connection"
+			],
+			[
+				"get",
+				"get_event_loop	function"
+			],
+			[
+				"connection",
+				"connection_types	statement"
+			],
+			[
+				"ver",
+				"version_info	statement"
+			],
+			[
+				"ent",
+				"entries"
+			],
+			[
+				"Las",
+				"last_seen"
+			],
+			[
+				"sear",
+				"search_wikipedia	function"
+			],
+			[
+				"ap",
+				"api_type	statement"
+			],
+			[
+				"nltk",
+				"nltk_database	statement"
+			],
+			[
+				"del",
+				"del_game	function"
+			],
+			[
+				"character",
+				"character_limit	param"
+			],
+			[
+				"add",
+				"add_tell"
+			],
+			[
+				"tar",
+				"target_nick"
+			],
+			[
+				"view",
+				"viewCount"
+			],
+			[
+				"reposit",
+				"repository"
+			],
+			[
+				"QG",
+				"QGraphicsScene"
+			],
+			[
+				"ac",
+				"active_marcher_combo_box"
+			],
+			[
+				"march",
+				"marcher_models"
+			],
+			[
+				"mem",
+				"member_count"
+			],
+			[
+				"mar",
+				"marchers"
+			],
+			[
+				"memb",
+				"members_widgets"
+			],
+			[
+				"member_",
+				"member_label"
+			],
+			[
+				"project",
+				"project_name"
+			],
+			[
+				"name",
+				"name_widget"
+			],
+			[
+				"path",
+				"path_widget"
+			],
+			[
+				"name_",
+				"name_label"
+			],
+			[
+				"trans",
+				"transmittance_scene	(global, instance)"
+			],
+			[
+				"gloss",
+				"gloss_color"
+			],
+			[
+				"p3d",
+				"p3d_Texture2"
+			],
+			[
+				"gl_",
+				"gl_FragColor"
+			],
+			[
+				"specular",
+				"specularColor"
+			],
+			[
+				"text",
+				"texture_path	(local, instance)"
+			],
+			[
+				"tex",
+				"texCoords"
+			],
+			[
+				"vertex",
+				"vertex_count	(global, instance)"
+			],
+			[
+				"verte",
+				"vertex_count	(global, instance)"
+			],
+			[
+				"texture",
+				"texture_coordinate"
+			],
+			[
+				"noise",
+				"noise_texture"
+			],
+			[
+				"ins",
+				"inside_vortex	(global, instance)"
+			],
+			[
+				"vortex",
+				"vortex_texture	(global, instance)"
+			],
+			[
+				"rad",
+				"radiusSegments	(local, instance)"
+			],
+			[
+				"lineS",
+				"line_stream"
+			],
+			[
+				"line",
+				"line_stream	(global, instance)"
+			],
+			[
+				"print",
+				"print_to_command(output_string)	(global, function)"
+			],
+			[
+				"Se",
+				"SelectEventLoop  (class)"
+			],
+			[
+				"Panda",
+				"PandaMainLoop	(global, class)"
+			],
+			[
+				"turre",
+				"turretComponent	(local, instance)"
+			],
+			[
+				"Tur",
+				"TurretComponent	(imported, class)"
+			],
+			[
+				"turr",
+				"turretEntityID	(local, instance)"
+			],
+			[
+				"__",
+				"__init__()	(attribute, function)"
+			],
+			[
+				"radius",
+				"radiusSegments"
+			],
+			[
+				"shipEnt",
+				"shipEntity	(local, instance)"
+			],
+			[
+				"Turr",
+				"TurretsComponent	(imported, class)"
+			],
+			[
+				"turrets",
+				"turretsComponent	(local, instance)"
+			],
+			[
+				"turret",
+				"turretEntity	(local, instance)"
+			],
+			[
+				"req",
+				"requestTurretTarget  (function)"
+			],
+			[
+				"tru",
+				"truePos"
+			],
+			[
+				"dis",
+				"displacement	(local, instance)"
+			],
+			[
+				"a",
+				"addParentPos  (function)"
+			],
+			[
+				"s",
+				"solarSystemRoot  (variable)"
+			],
+			[
+				"station",
+				"stationButtons	(global, instance)"
+			],
+			[
+				"statio",
+				"stationButtons	(global, instance)"
+			],
+			[
+				"stat",
+				"stationButtons	(global, instance)"
+			],
+			[
+				"tur",
+				"turretName"
+			],
+			[
+				"hand",
+				"handle_exit_task  (function)"
+			],
+			[
+				"event",
+				"event_loop"
+			],
+			[
+				"SC",
+				"scaleFactor"
+			],
+			[
+				"scale",
+				"scaleFactor	(local, instance)"
+			],
+			[
+				"exec",
+				"exec_args	(global, instance)"
+			],
+			[
+				"Command",
+				"CommandBox	(global, class)"
+			],
+			[
+				"key",
+				"keypress"
+			],
+			[
+				"menu",
+				"menuList	(global, instance)"
+			],
+			[
+				"math",
+				"mathextra"
+			],
+			[
+				"current",
+				"currentAngle"
+			],
+			[
+				"autoT",
+				"autoTurnTarget  (variable)"
+			],
+			[
+				"break",
+				"breakAngleDistance	(local, instance)"
+			],
+			[
+				"physic",
+				"physicsComponent	(local, instance)"
+			],
+			[
+				"A",
+				"autoTurnTarget  (variable)"
+			],
+			[
+				"tas",
+				"taskMgr"
+			],
+			[
+				"Ship",
+				"ShipSystem	(imported, class)"
+			],
+			[
+				"ship",
+				"shipSystem	(imported, module)"
+			],
+			[
+				"crea",
+				"REQUEST_CREATE_SHIP  (variable)"
+			],
+			[
+				"REQ",
+				"REQUEST_CREATE_SHIP	(global, instance)"
+			],
+			[
+				"clas",
+				"className	(local, instance)"
+			],
+			[
+				"player",
+				"playerMap	(attribute, instance)"
+			],
+			[
+				"or",
+				"orthographic	(global, function)"
+			],
+			[
+				"picked",
+				"pickedObj	(local, instance)"
+			],
+			[
+				"zone",
+				"zoney	(attribute, instance)"
+			],
+			[
+				"curr",
+				"currentY	(local, instance)"
+			],
+			[
+				"setA",
+				"setLinearVelocity"
+			],
+			[
+				"att",
+				"attachRigidBody"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "__init__.py",
+			"settings":
+			{
+				"buffer_size": 1368,
+				"line_ending": "Unix",
+				"name": "# ## Python 3 look ahead imports ###"
+			}
+		},
+		{
+			"file": "bp.py",
+			"settings":
+			{
+				"buffer_size": 53043,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 54.0,
+		"selected_items":
+		[
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: In",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: inst",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Pac",
+				"Package Control: List Packages"
+			],
+			[
+				"",
+				"About"
+			],
+			[
+				"Pack",
+				"Package Control: Install Package"
+			],
+			[
+				"Packa",
+				"Package Control: Discover Packages"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 469.0
+	},
+	"console":
+	{
+		"height": 153.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) ",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read()) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/Core/interrogate.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/SettingsManager.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/FastText.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/BetterShader.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/RenderingPipeline.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/PipelineGuiManager.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/__init__.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/RenderTarget.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/AbstractMethodException.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/AmbientOcclusion.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/Antialiasing.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/ConsoleColors.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/DebugObject.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/DirectionalLight.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/FirstPersonController.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/Globals.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/Light.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/LightManager.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/LightType.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/MovementController.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/NoSenseException.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/PipelineSettingsManager.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/PointLight.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/RenderBuffer.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/RenderTargetType.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/Scatttering.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/ShaderStructArray.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/ShadowAtlas.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/ShadowSource.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/TextureCleaner.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/classes/TextureDebugger.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/RenderPipeline.sublime-project",
+		"/home/croxis/src/launch2git.py",
+		"/home/croxis/src/cefpython3-29.2-ubuntu1204-64bit-setup/examples/p3d5.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/shuttle/shuttle.vertex",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/shuttle.py",
+		"/home/croxis/src/Panda-Core-Technology/RenderPipeline/shuttle/shuttle.fragment",
+		"/home/croxis/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/croxis/src/glitch/scripts/glitch.bat",
+		"/home/croxis/src/glitch/scripts/eyercbot.bat",
+		"/home/croxis/src/glitch/glitch/database.py",
+		"/home/croxis/src/glitch/requirements.txt",
+		"/home/croxis/src/glitch/glitch/users.py",
+		"/home/croxis/src/glitch/glitch/groups.py",
+		"/home/croxis/src/glitch/glitch/events.py",
+		"/home/croxis/src/glitch/glitch/plugins/seen/plugin.py",
+		"/home/croxis/src/glitch/glitch/network.py",
+		"/home/croxis/src/glitch/glitch/connections/irc.py",
+		"/home/croxis/src/glitch/setup.py",
+		"/home/croxis/src/glitch/glitch/plugins/user/plugin.py",
+		"/home/croxis/src/glitch/glitch/plugins/twitchtv/plugin.py",
+		"/home/croxis/src/glitch/glitch/plugins/slack/plugin.py",
+		"/home/croxis/src/glitch/scripts/glitch",
+		"/home/croxis/src/glitch/glitch/connections/web.py",
+		"/home/croxis/src/glitch/glitch/__init__.py",
+		"/home/croxis/src/glitch/glitch/plugins/quotes/plugin.py",
+		"/home/croxis/src/glitch/glitch/plugins/stats/plugin.py",
+		"/home/croxis/src/glitch/glitch/glitch.py",
+		"/home/croxis/src/glitch/glitch/plugins/channel_logger/plugin.py",
+		"/home/croxis/src/glitch/glitch/web/__init__.py",
+		"/home/croxis/src/glitch/build/lib/glitch/plugins/seen/plugin.py",
+		"/home/croxis/src/glitch/glitch/plugins/help/plugin.py",
+		"/home/croxis/src/glitch/glitch/plugins/memory/plugin.py",
+		"/home/croxis/src/glitch/glitch/plugins/__init__.py",
+		"/home/croxis/src/glitch/glitch/plugins/slack/__init__.py",
+		"/home/croxis/src/glitch/glitch/plugins/admin/plugin.py",
+		"/home/croxis/src/glitch/glitch/setupandupdate.py",
+		"/home/croxis/src/glitch/glitch/plugins/steam/plugin.py",
+		"/home/croxis/src/glitch/glitch/irc.py",
+		"/home/croxis/src/glitch/glitch/plugins/search/plugin.py",
+		"/home/croxis/src/glitch/requests.txt",
+		"/home/croxis/src/glitch/glitch/plugins/madlibs/plugin.py",
+		"/home/croxis/src/glitch/glitch/plugins/faq/plugin.py",
+		"/home/croxis/src/glitch/glitch/plugins/feed/plugin.py",
+		"/home/croxis/src/glitch/glitch/plugins/choose/plugin.py",
+		"/home/croxis/src/glitch/glitch/plugins/autofetch/plugin.py",
+		"/home/croxis/src/glitch/glitch/messenger.py",
+		"/home/croxis/src/glitch/glitch/log_retire.py",
+		"/home/croxis/src/glitch/README.rst",
+		"/home/croxis/src/glitch/docs/index.rst",
+		"/home/croxis/src/glitch/scripts/glitch_setup",
+		"/home/croxis/src/glitch/docs/conf.py",
+		"/home/croxis/src/glitch/glitch/connections/__init__.py",
+		"/home/croxis/src/glitch/glitch/log.py",
+		"/home/croxis/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/croxis/.config/sublime-text-3/Packages/User/JSON.sublime-settings",
+		"/home/croxis/.config/sublime-text-3/Packages/User/Python.sublime-settings",
+		"/home/croxis/.config/sublime-text-3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/home/croxis/.config/sublime-text-3/Packages/User/Anaconda.sublime-settings",
+		"/home/croxis/.config/sublime-text-3/Packages/User/pep8_autoformat.sublime-settings",
+		"/home/croxis/.config/sublime-text-3/Packages/Python PEP8 Autoformat/pep8_autoformat.sublime-settings",
+		"/home/croxis/src/glitch/glitch/plugins/panda3d/plugin.py",
+		"/home/croxis/.paradoxinteractive/Crusader Kings II/settings.txt",
+		"/home/croxis/src/glitch/glitch/plugins/panda3d/__init__.py",
+		"/home/croxis/.config/sublime-text-3/Packages/User/Package Control.sublime-settings",
+		"/home/croxis/.config/sublime-text-3/Packages/Package Control/Package Control.sublime-settings",
+		"/home/croxis/src/glitch/glitch/plugins/npc/plugin.py",
+		"/home/croxis/src/glitch/glitch/plugins/help/__init__.py",
+		"/home/croxis/src/glitch/glitch/plugins/codewatch/plugin.py",
+		"/home/croxis/src/Panda-Core-Technology/Planet/planet_surface_frag.glsl",
+		"/home/croxis/src/Panda-Core-Technology/Planet/planet_surface_vert.glsl",
+		"/home/croxis/src/Panda-Core-Technology/Planet/atmoshaders/simple_vertex.glsl",
+		"/home/croxis/src/Panda-Core-Technology/Planet/surface_mesh.py",
+		"/home/croxis/src/Panda-Core-Technology/Planet/main.py",
+		"/home/croxis/src/Panda-Core-Technology/Planet/precompute.py",
+		"/home/croxis/src/Panda-Core-Technology/Planet/planet_atmosphere_vert.glsl",
+		"/home/croxis/src/Panda-Core-Technology/Planet/convert_texture.py",
+		"/home/croxis/src/Panda-Core-Technology/Planet/atmoshaders/oneil_sky_from_space_frag.glsl",
+		"/home/croxis/src/Panda-Core-Technology/Planet/atmoshaders/oneil_sky_from_space_vert.glsl",
+		"/home/croxis/src/Panda-Core-Technology/Planet/atmoshaders/transmittance.glsl",
+		"/home/croxis/src/apollo/solarSystem.py",
+		"/home/croxis/src/Panda-Core-Technology/Planet/test.py",
+		"/home/croxis/src/Panda-Core-Technology/Planet/smiley.egg.pz",
+		"/home/croxis/src/eval/eval.py",
+		"/home/croxis/src/Panda-Core-Technology/Planet/planet_surface_phong_vert.glsl",
+		"/home/croxis/src/Panda-Core-Technology/Planet/planet_surface_vert2.glsl",
+		"/home/croxis/src/Panda-Core-Technology/Planet/phong_vert.glsl",
+		"/home/croxis/src/Panda-Core-Technology/Planet/phong_frag2.glsl",
+		"/home/croxis/src/Panda-Core-Technology/Planet/planet_surface_frag2.glsl",
+		"/home/croxis/src/apollo/quadPlanetFrag2.glsl",
+		"/home/croxis/src/apollo/quadPlanetVert2.glsl",
+		"/home/croxis/src/apollo/planet_prototype.py",
+		"/home/croxis/src/apollo/crach.py",
+		"/home/croxis/src/apollo/quadPlanetVert3.glsl",
+		"/home/croxis/src/apollo/starFrag.glsl",
+		"/home/croxis/src/apollo/shapeGenerator.py",
+		"/home/croxis/src/apollo/quadPlanetVertex.glsl",
+		"/home/croxis/src/apollo/quadPlanetFrag.glsl"
+	],
+	"find":
+	{
+		"height": 24.0
+	},
+	"find_in_files":
+	{
+		"height": 88.0,
+		"where_history":
+		[
+			"<project>",
+			"*.py"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"setFr",
+			"eyercbot",
+			"joined(",
+			"user = glitch.users.get_user(nick)",
+			"publicmsg(",
+			"print",
+			"processMsg(",
+			"processMsg()",
+			"glitch",
+			".\"\"\"",
+			"messenger.add_message",
+			"There was some error processing your command",
+			"notice",
+			"self.",
+			"16",
+			"setP",
+			"self.shipClasses",
+			"getMouseCell\n\ngetMouseCell",
+			"fill = ",
+			"show_or_exit\n\n\n",
+			"universals.spawn",
+			"374",
+			"truePos",
+			"print",
+			"myrepl",
+			"fsm.request('Nav')",
+			"spawnShip",
+			"requestCreateShip",
+			"shipGenerated",
+			"Hyperion",
+			"setScale",
+			"SHIP ID",
+			"print",
+			"setPos",
+			"Noise",
+			"print",
+			"shipSelectScreen",
+			"7.7",
+			"add",
+			"datagram",
+			"SandBox",
+			"NodePath"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"glitch",
+			"user = glitch.users.get_user(nick, 'irc')",
+			"messenger.add",
+			"",
+			"0.5",
+			"noise.noise",
+			"get",
+			"myIterator",
+			"sandbox"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "__init__.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1368,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "# ## Python 3 look ahead imports ###",
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"sublime_auto_complete": true,
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "bp.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 53043,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								53042,
+								53042
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"sublime_auto_complete": true,
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 18227.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 37.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "bpython.sublime-project",
+	"replace":
+	{
+		"height": 44.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"protocol.py"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"sa",
+				"/home/croxis/src/SandBox/sandbox.sublime-project"
+			],
+			[
+				"",
+				"/home/croxis/src/SandBox/sandbox.sublime-project"
+			],
+			[
+				"sand",
+				"/home/croxis/src/SandBox/sandbox.sublime-project"
+			],
+			[
+				"sandbox",
+				"/home/croxis/src/SandBox/sandbox.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 201.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

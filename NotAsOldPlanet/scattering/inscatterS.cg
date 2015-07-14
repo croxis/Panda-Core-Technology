@@ -1,0 +1,134 @@
+
+
+void vshader(
+    float4 vtx_position : POSITION,
+    uniform float4x4 mat_modelproj,
+    out float3 l_txcoord : TEXCOORD0,
+    out float4 l_position : POSITION)
+{
+    l_position=mul(mat_modelproj, vtx_position);
+    l_txcoord.xy = (vtx_position.xz / 2.0) + 0.5;
+    
+    l_txcoord.z = 0.0;
+}
+
+TRIANGLE void gshader(AttribArray<float4> position  : POSITION, 
+                      AttribArray<float4> texCoord : TEXCOORD0,
+                      uniform float4x4 mat_modelproj
+                      )
+{ 
+  for (int layer = 0;layer<ACTUAL_LAYERS;layer++) { // create n layers
+    for(int i=0; i<3; i++) {
+      float3 txcoord = float3(texCoord[i].xy, layer); 
+      emitVertex(position[i]  :POSITION,
+                 txcoord      :TEXCOORD0,
+                 layer        :LAYER);
+    }
+    restartStrip();
+  }
+}
+
+
+
+void inscatter(float r, float mu, float muS, float nu, out float3 raymie, 
+    sampler2D transmittance_tex, sampler2D deltaESampler, int first,
+    sampler2DARRAY deltaSRSampler, sampler2DARRAY deltaSMSampler 
+    ) {
+    
+  float dphi = M_PI / float(INSCATTER_SPHERICAL_INTEGRAL_SAMPLES);
+  float dtheta = M_PI / float(INSCATTER_SPHERICAL_INTEGRAL_SAMPLES);
+
+    r = clamp(r, Rg, Rt);
+    mu = clamp(mu, -1.0, 1.0);
+    muS = clamp(muS, -1.0, 1.0);
+    float var = sqrt(1.0 - mu * mu) * sqrt(1.0 - muS * muS);
+    nu = clamp(nu, muS * mu - var, muS * mu + var);
+
+    float cthetamin = -sqrt(1.0 - (Rg / r) * (Rg / r));
+
+    float3 v = float3(sqrt(1.0 - mu * mu), 0.0, mu);
+    float sx = v.x == 0.0 ? 0.0 : (nu - muS * mu) / v.x;
+    float3 s = float3(sx, sqrt(max(0.0, 1.0 - sx * sx - muS * muS)), muS);
+
+    raymie = float3(0.0);
+
+    // integral over 4.PI around x with two nested loops over w directions (theta,phi) -- Eq (7)
+    for (int itheta = 0; itheta < INSCATTER_SPHERICAL_INTEGRAL_SAMPLES; ++itheta) {
+        float theta = (float(itheta) + 0.5) * dtheta;
+        float ctheta = cos(theta);
+
+        float greflectance = 0.0;
+        float dground = 0.0;
+        float3 gtransp = float3(0.0);
+        if (ctheta < cthetamin) { // if ground visible in direction w
+            // compute transparency gtransp between x and ground
+            greflectance = AVERAGE_GROUND_REFLECTANCE / M_PI;
+            dground = -r * ctheta - sqrt(r * r * (ctheta * ctheta - 1.0) + Rg * Rg);
+            gtransp = transmittance(Rg, -(r * ctheta + dground) / Rg, dground, transmittance_tex);
+        }
+
+        for (int iphi = 0; iphi < 2 * INSCATTER_SPHERICAL_INTEGRAL_SAMPLES; ++iphi) {
+            float phi = (float(iphi) + 0.5) * dphi;
+            float dw = dtheta * dphi * sin(theta);
+            float3 w = float3(cos(phi) * sin(theta), sin(phi) * sin(theta), ctheta);
+
+            float nu1 = dot(s, w);
+            float nu2 = dot(v, w);
+            float pr2 = phaseFunctionR(nu2);
+            float pm2 = phaseFunctionM(nu2);
+
+            // compute irradiance received at ground in direction w (if ground visible) =deltaE
+            float3 gnormal = (float3(0.0, 0.0, r) + dground * w) / Rg;
+            float3 girradiance = irradiance(deltaESampler, Rg, dot(gnormal, s));
+
+            float3 raymie1; // light arriving at x from direction w
+
+            // first term = light reflected from the ground and attenuated before reaching x, =T.alpha/PI.deltaE
+            raymie1 = greflectance * girradiance * gtransp;
+
+            // second term = inscattered light, =deltaS
+            if (first == 1.0) {
+                // first iteration is special because Rayleigh and Mie were stored separately,
+                // without the phase functions factors; they must be reintroduced here
+                float pr1 = phaseFunctionR(nu1);
+                float pm1 = phaseFunctionM(nu1);
+                float3 ray1 = texture4D(deltaSRSampler, r, w.z, muS, nu1).rgb;
+                float3 mie1 = texture4D(deltaSMSampler, r, w.z, muS, nu1).rgb;
+                raymie1 += ray1 * pr1 + mie1 * pm1;
+            } else {
+                raymie1 += texture4D(deltaSRSampler, r, w.z, muS, nu1).rgb;
+            }
+
+            // light coming from direction w and scattered in direction v
+            // = light arriving at x from direction w (raymie1) * SUM(scattering coefficient * phaseFunction)
+            // see Eq (7)
+            raymie += raymie1 * (betaR * exp(-(r - Rg) / HR) * pr2 + betaMSca * exp(-(r - Rg) / HM) * pm2) * dw;
+        }
+    }
+
+    // output raymie = J[T.alpha/PI.deltaE + deltaS] (line 7 in algorithm 4.1)
+}
+
+void fshader(
+    in float3 l_txcoord : TEXCOORD0,
+    in uniform sampler2DARRAY tx_deltaSR : TEXUNIT0,
+    in uniform sampler2DARRAY tx_deltaSM : TEXUNIT1,
+    in uniform sampler2D tx_transmittance : TEXUNIT2,
+    in uniform sampler2D tx_deltaE : TEXUNIT3,
+    in uniform int first,
+    out float4 o_color : COLOR)
+{
+
+    float2 fragCoord;
+    toFragCoord(l_txcoord.xy, float2(RES_RNU, RES_MU), fragCoord);
+
+    float4 dhdH; float r;
+    getDhdhR(l_txcoord.z, dhdH, r);
+
+    float mu, muS, nu;
+    float3 raymie;
+    getMuMuSNu(r, dhdH, mu, muS, nu, fragCoord);
+    inscatter(r, mu, muS, nu, raymie, tx_transmittance, tx_deltaE, first, tx_deltaSR, tx_deltaSM);
+
+    o_color = saturate(float4(raymie.xyz,1.0)) * DELTA_J_SF;
+}

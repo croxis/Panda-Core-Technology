@@ -1,0 +1,29 @@
+
+
+
+void vshader(
+    float4 vtx_position : POSITION,
+    uniform float4x4 mat_modelproj,
+    out float2 l_txcoord : TEXCOORD0,
+    out float4 l_position : POSITION)
+{
+    l_position=mul(mat_modelproj, vtx_position);
+    l_txcoord = (vtx_position.xz / 2.0) + 0.5;
+    // l_txcoord.xy = float2(l_txcoord.y, 1.0 - l_txcoord.x);
+}
+
+
+
+void fshader(
+    in float2 l_txcoord : TEXCOORD0,
+    in uniform sampler2D tx_transmittance : TEXUNIT0,
+    out float4 o_color : COLOR)
+{
+    float2 fragCoord;
+    toFragCoord(l_txcoord.xy, float2(SKY_W, SKY_H) , fragCoord);
+    
+    float r, muS;
+
+    getIrradianceRMuS(r, muS, fragCoord);
+    o_color = float4(transmittance(r, muS, tx_transmittance) * max(muS, 0.0),1.0);
+}

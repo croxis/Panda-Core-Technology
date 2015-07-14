@@ -1,0 +1,118 @@
+ //Cg
+// http://stainlessbeer.weebly.com/planets-9-atmospheric-scattering.html
+// http://http.developer.nvidia.com/GPUGems2/gpugems2_chapter16.html
+// http://sponeil.net/
+float g =-0.90f;
+float g2 = 0.81f;
+float fExposure =.6;
+
+float scale(float fCos)
+{
+    float x = 1.0 - fCos; 
+
+   return 0.25 * exp(-0.00287 + x*(0.459 + x*(3.83 + x*(-6.80 + x*5.25))));
+    
+ 
+}
+ 
+void vshader(float4 vtx_position:POSITION,
+   float4 vtx_color: COLOR,
+    in uniform float4 k_v3LightPos,          // The light's current position
+    in uniform float4 k_v3CameraPos,         // The camera's current position
+    in uniform float4 k_v3InvWavelength,     // 1 / pow(wavelength, 4) for RGB
+    in uniform float4 k_fCameraHeight,        // The camera's current height
+    in uniform float4 k_fCameraHeight2,       // fCameraHeight^2
+    in uniform float4 k_fOuterRadius,         // The outer (atmosphere) radius
+    in uniform float4 k_fOuterRadius2,        // fOuterRadius^2
+    in uniform float4 k_fInnerRadius,         // The inner (planetary) radius
+    in uniform float4 k_fInnerRadius2,        // fInnerRadius^2
+    in uniform float4 k_fKrESun,              // Kr * ESun
+    in uniform float4 k_fKmESun,              // Km * ESun
+    in uniform float4 k_fKr4PI,               // Kr * 4 * PI
+    in uniform float4 k_fKm4PI,               // Km * 4 * PI
+    in uniform float4 k_fScale,               // 1 / (fOuterRadius - fInnerRadius)
+    in uniform float4 k_fScaleOverScaleDepth, // fScale / fScaleDepth
+    in uniform float4 k_fScaleDepth,          // The scale depth (i.e. the altitude at which the atmosphere's average density is found)
+    in uniform float4 k_fSamples,
+    in uniform float4 k_nSamples,
+    uniform float4x4 mat_modelproj,
+    out float4 l_position : POSITION,
+    out float4 l_color0   : COLOR0,
+    out float4 l_color1   : COLOR1,
+    out float3 l_v3Direction: TEXCOORD0 )
+{
+    float3 v3Pos = vtx_position.xyz;
+    float3 v3Ray = v3Pos - k_v3CameraPos.xyz;
+    float fFar = length(v3Ray);
+    v3Ray /= fFar;
+ 
+    // Calculate the closest intersection of the ray with the outer atmosphere
+    // (which is the near point of the ray passing through the atmosphere)   
+    float B = 2.0 * dot(k_v3CameraPos.xyz, v3Ray);
+    float C = k_fCameraHeight2 - k_fOuterRadius2;
+    float fDet = max(0.0, B*B - 4.0 * C);
+    float fNear = 0.5 * (-B - sqrt(fDet));
+     
+    // Calculate the ray's start and end positions in the atmosphere,
+    // then calculate its scattering offset
+    float3 v3Start = k_v3CameraPos.xyz + v3Ray * fNear;
+    fFar -= fNear;
+   
+ 
+    // Initialize the scattering loop variables
+    float fSampleLength = fFar / 15.0;
+   //float fSampleLength = fFar / 1.0
+    float fScaledLength = fSampleLength * k_fScale;
+    float3 v3SampleRay = v3Ray * fSampleLength;
+    float3 v3SamplePoint = v3Start + (v3SampleRay * 0.5);
+   
+    float fHeight = length(v3SamplePoint);
+    //float fStartAngle = dot(v3Ray, v3Start) / k_fOuterRadius.x;
+    float fStartAngle = dot(v3Ray, v3Start) / fHeight;
+    //float fStartDepth = exp(-1.0 / k_fScaleDepth.x);
+   float fStartDepth = exp(k_fScaleOverScaleDepth * (k_fInnerRadius - fHeight));
+    float fStartOffset = fStartDepth * scale(fStartAngle);
+   
+   
+    // Now loop through the sample points
+    float3 v3FrontColor = float3(0.0, 0.0, 0.0);
+    for(int i=0; i<14; i++) 
+    {
+        float fHeight = length(v3SamplePoint);
+      float fDepth = exp(k_fScaleOverScaleDepth * (k_fInnerRadius - fHeight));
+        float fLightAngle = dot(k_v3LightPos.xyz, v3SamplePoint) / fHeight;
+        float fCameraAngle = dot(v3Ray, v3SamplePoint) / fHeight;
+        float fScatter = (fStartOffset + fDepth * (scale(fLightAngle) - scale(fCameraAngle)));
+        float3 v3Attenuate = exp(-fScatter *(k_v3InvWavelength.xyz * k_fKr4PI.x + k_fKm4PI.x));
+        v3FrontColor += v3Attenuate * (fDepth * fScaledLength);
+        v3SamplePoint += v3SampleRay;
+    }
+   l_position=mul(mat_modelproj, vtx_position); 
+    l_color0.rgb = v3FrontColor.xyz * k_v3InvWavelength.xyz * k_fKrESun.x;
+    l_color1.rgb=v3FrontColor*k_fKmESun.x;
+    l_v3Direction =k_v3CameraPos.xyz - v3Pos;
+}
+ 
+
+
+void fshader(in float4 l_position : POSITION,
+    in float4 l_color0   : COLOR0,
+    in float4 l_color1   : COLOR1,
+    in float3 l_v3Direction : TEXCOORD0,
+    uniform float4 k_v3LightPos,
+    out float4 o_color:COLOR)
+{
+    float fCos = dot(k_v3LightPos, l_v3Direction) / length(l_v3Direction);
+    float fRayleighPhase = 0.75 * (1.0 + fCos*fCos);
+   //float fRayleighPhase = .9 * (1.0 + fCos*fCos);
+    float fMiePhase= 1.5 * ((1.0 - g2) / (2.0 + g2)) * (1.0 + fCos*fCos) / pow(1.0 + g2 - 2.0*g*fCos, 1.5);
+    //float fMiePhase =    1.5 * 1.0 / (0.0015 * 4 * 3.14159) * (1.0 - g2) * pow(1.0 + (g2) - 2.0*g*fCos, -3.0/2.0) * (1.0 +fCos * fCos) / (2.0 + g2);
+    //This causes a brightness reduction when viewing at 90 degrees
+    float4 col=(fRayleighPhase * l_color0) + (fMiePhase * l_color1);
+    //float4 col=(l_color0) + (fMiePhase * l_color1);
+    //col.a = col.b;
+   col.a=max(col.b,col.r);
+    //In some versions, not in others. Not sure what impact it has
+    o_color = 1 - exp(-fExposure * col);
+    //o_color = col;
+}    

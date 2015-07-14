@@ -1,0 +1,103 @@
+
+
+
+
+void integrand(float r, float mu, float muS, float nu, float t, out float3 ray, out float3 mie, sampler2D tx_transmittance) {
+    ray = float3(0.0);
+    mie = float3(0.0);
+    float ri = sqrt(r * r + t * t + 2.0 * r * mu * t);
+    float muSi = (nu * t + muS * r) / ri;
+    ri = max(Rg, ri);
+    if (muSi >= -sqrt(1.0 - Rg * Rg / (ri * ri))) {
+        float3 ti = transmittance(r, mu, t, tx_transmittance) * transmittance(ri, muSi, tx_transmittance);
+        ray = exp(-(ri - Rg) / HR) * ti;
+        mie = exp(-(ri - Rg) / HM) * ti;
+    }
+}
+
+void inscatter(float r, float mu, float muS, float nu, out float3 ray, out float3 mie, sampler2D tx_transmittance) {
+    ray = float3(0.0);
+    mie = float3(0.0);
+    float dx = limit(r, mu) / float(INSCATTER_INTEGRAL_SAMPLES);
+    float xi = 0.0;
+    float3 rayi;
+    float3 miei;
+    integrand(r, mu, muS, nu, 0.0, rayi, miei, tx_transmittance);
+    for (int i = 1; i <= INSCATTER_INTEGRAL_SAMPLES; ++i) {
+        float xj = float(i) * dx;
+        float3 rayj;
+        float3 miej;
+        integrand(r, mu, muS, nu, xj, rayj, miej, tx_transmittance);
+        ray += (rayi + rayj) / 2.0 * dx;
+        mie += (miei + miej) / 2.0 * dx;
+        xi = xj;
+        rayi = rayj;
+        miei = miej;
+    }
+    ray *= betaR;
+    mie *= betaMSca;
+}
+
+
+void vshader(
+    float4 vtx_position : POSITION,
+    uniform float4x4 mat_modelproj,
+    out float3 l_txcoord : TEXCOORD0,
+    out float4 l_position : POSITION)
+{
+    l_position = mul(mat_modelproj, vtx_position);
+    l_txcoord.xy = (vtx_position.xz / 2.0) + 0.5;
+
+    l_txcoord.xy = float2(l_txcoord.x, 1.0 - l_txcoord.y);
+    l_txcoord.z = 0;
+}
+
+
+TRIANGLE void gshader(AttribArray<float4> position  : POSITION, 
+                      AttribArray<float4> texCoord : TEXCOORD0,
+                      uniform float4x4 mat_modelproj
+                      )
+{ 
+  for (int layer = 0;layer<ACTUAL_LAYERS;layer++) { // create n layers
+    for(int i=0; i<3; i++) {
+      float3 txcoord = float3(texCoord[i].xy, layer); 
+      emitVertex(position[i]  :POSITION,
+                 txcoord      :TEXCOORD0,
+                 layer        :LAYER);
+    }
+    restartStrip();
+  }
+}
+
+
+void fshader(
+    in float3 l_txcoord : TEXCOORD0,
+    in uniform sampler2D tx_transmittance : TEXUNIT0,
+    out float4 o_color : COLOR0,
+    out float4 o_color1 : COLOR1
+    )
+{  
+    float2 fragCoord;
+    toFragCoord(l_txcoord.xy, float2(RES_RNU, RES_MU), fragCoord);
+    
+    float4 dhdH; float r;
+    getDhdhR(l_txcoord.z, dhdH, r);
+
+    float3 ray;
+    float3 mie;
+
+
+    // r = 3000.0;
+
+    float mu, muS, nu;
+    getMuMuSNu(r, dhdH, mu, muS, nu, fragCoord);
+    inscatter(r, mu, muS, nu, ray, mie, tx_transmittance);    
+
+    // store separately Rayleigh and Mie contributions, WITHOUT the phase function factor
+    // (cf "Angular precision")
+    o_color = float4(ray,1);
+    o_color1 = float4(mie,1);
+
+    // // o_color = float4(mu, muS, nu, 1);
+    // o_color = float4(0.2,0.6,1.0,1);
+}

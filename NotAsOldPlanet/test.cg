@@ -1,0 +1,25 @@
+//Cg
+/* Generated shader for render state 0x7f156e737ff0:
+  LightAttrib:on
+    render/light
+  ShaderAttrib
+  TextureAttrib:on default:smiley
+*/
+void vshader(
+	 in float4 vtx_texcoord0 : TEXCOORD0,
+	 out float4 l_texcoord0 : TEXCOORD0,
+	 uniform float4x4 trans_model_to_view,
+	 out float4 l_eye_position : TEXCOORD1,
+	 uniform float4x4 tpose_view_to_model,
+	 out float4 l_eye_normal : TEXCOORD2,
+	 in float4 vtx_normal : TEXCOORD1,
+	 float4 vtx_position : POSITION,
+	 out float4 l_position : POSITION,
+	 uniform float4x4 mat_modelproj
+) {
+	 l_position = mul(mat_modelproj, vtx_position);
+	 l_eye_position = mul(trans_model_to_view, vtx_position);
+	 l_eye_normal.xyz = mul((float3x3)tpose_view_to_model, vtx_normal.xyz);
+	 l_eye_normal.w = 0;
+	 l_texcoord0 = vtx_texcoord0;
+}

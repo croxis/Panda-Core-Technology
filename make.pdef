@@ -1,0 +1,38 @@
+from panda3d.core import Filename
+import sys
+# add the working directory to the path so local files and modules can be found
+sys.path.insert(0,'')
+
+packager.setHost('https://croxis.net/p3d/')
+
+class SandBox(package):
+    require('panda3d')
+    config(
+        version='0.1',
+        display_name='SandBox')
+    module('sandbox')
+
+
+class SpaceDrive(package):
+    require('panda3d')
+    config(
+        version='0.1',
+        display_name='SpaceDrive')
+    module('spacedrive')
+
+
+class PyCapnp(package):
+    require('panda3d')
+    config(
+        version='0.4.4',
+        display_name='pycapnp')
+    module('pycapnp')
+
+
+class CEFPython(package):
+    require('panda3d')
+    config(
+        version='29.2',
+        display_name='Chromium Embedded Framework')
+    module('cefpython')
+

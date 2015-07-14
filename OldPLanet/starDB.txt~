@@ -1,0 +1,63 @@
+{
+    "Sol": {
+        "Sun": {
+            "period": 0, 
+            "radius": 
+            695500.0, 
+            "rotation": 
+            25.379999999999999, 
+            "axis": 0, 
+            "spectral": 
+            "G2V", 
+            "absolute magnitude": 
+            4.8300000000000001, 
+            "orbit": 0, 
+            "texture": "sun_1k_tex.jpg", 
+            "mass": 1.99e+30, 
+            "type": "star", 
+                "Earth": {
+                    "atmosphere": {
+                        "averageD": 5.5999999999999996, "thickness": 100},
+                    "radius": 6378.1000000000004, 
+                    "mass": 5.9742000000000003e+24, 
+                    "rotation": 1, 
+                    "axis": 23.439, 
+                    "type": "body",  
+                    "texture": "earth_#.png", 
+                    "normal": "Earth_NormalMap_2.jpg",
+                    "spec": "earth_spec.png",
+                    "height": "srtm_ramp2.world.5400x2700.jpg",
+                    "glow": "earth_glow.png",
+                    "period": 365.25636300000002,
+                    "orbit": {
+                        "i":   "lambda d: -0.00054346 + -0.0001337178 * d",
+                        "a":    1.00000018,
+                        "N":    "lambda d: -5.11260389 + -0.0024123856 * d",
+                        "e":    "lambda d: 0.01673163 - 3.661e-07 * d",
+                        "w":    "lambda d: 108.04266274 + 0.0031795260 * d",
+                        "M":    "lambda d: -2.4631431299999917"
+                        },
+                    "bodies": {
+                        "Moon": {
+                            "period": 27.321581999999999, 
+                            "radius": 1737.4000000000001, 
+                            "mass": 7.36e+22, 
+                            "rotation": 27.321581999999999, 
+                            "type": "moon",  
+                            "texture": "moon_1k_tex.jpg", 
+                            "axis": 1.5424,
+                            "orbit": {
+                                "i":   "lambda d: 5.16",
+                                "a":    384400,
+                                "N":    "lambda d: 125.08 + -13.176358 * d",
+                                "e":    "lambda d: 0.0554",
+                                "w":    "lambda d: 318.15",
+                                "M":    "lambda d: 135.27"
+                                }
+                            }
+                    
+                }
+            }
+        }
+    }
+}

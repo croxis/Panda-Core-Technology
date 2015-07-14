@@ -1,0 +1,49 @@
+
+
+pass Default:
+
+    vertex:
+        template default
+        out layout(location=8) vec4 objectSpacePosition;
+
+        insert @SHADER_END:
+            objectSpacePosition = p3d_Vertex;
+
+    fragment:
+        template default
+        #pragma include "noise3D.glsl"
+        in layout(location=8) vec4 objectSpacePosition;
+
+        insert @MATERIAL:
+            float inside = 1.6;
+            float outside = 2.6;
+            if(length(objectSpacePosition) > outside || length(objectSpacePosition) < inside) {
+                discard;
+            }
+            vec2 newTexCoords = vOutput.texcoord;
+            newTexCoords.x = (length(objectSpacePosition) - inside) / (outside - inside);
+            //float nose = snoise(vOutput.normalWorld);
+            //m.baseColor = vec3(nose);
+            m.baseColor = texture(p3d_Texture0, newTexCoords).xyz;
+            m.alpha = dot(m.baseColor, vec3(1)) / 3.0;
+
+
+pass Shadows:
+
+    vertex:
+        template default
+        out layout(location=8) vec4 objectSpacePosition;
+
+        insert @SHADER_END:
+            objectSpacePosition = p3d_Vertex;
+
+    fragment:
+        template default
+        in layout(location=8) vec4 objectSpacePosition;
+
+        insert @SHADER_END:
+            float inside = 1.6;
+            float outside = 2.6;
+            if(length(objectSpacePosition) > outside || length(objectSpacePosition) < inside) {
+                discard;
+            }

@@ -1,0 +1,41 @@
+
+void vshader(
+    float4 vtx_position : POSITION,
+    uniform float4x4 mat_modelproj,
+    out float3 l_txcoord : TEXCOORD0,
+    out float4 l_position : POSITION)
+{
+    l_position=mul(mat_modelproj, vtx_position);
+    l_txcoord.xy = (vtx_position.xz / 2.0) + 0.5;
+    
+    l_txcoord.z = 0.0;
+}
+
+TRIANGLE void gshader(AttribArray<float4> position  : POSITION, 
+                      AttribArray<float4> texCoord : TEXCOORD0,
+                      uniform float4x4 mat_modelproj
+                      )
+{ 
+  for (int layer = 0;layer<ACTUAL_LAYERS;layer++) { // create n layers
+    for(int i=0; i<3; i++) {
+      float3 txcoord = float3(texCoord[i].xy, layer); 
+      emitVertex(position[i]  :POSITION,
+                 txcoord      :TEXCOORD0,
+                 layer        :LAYER);
+    }
+    restartStrip();
+  }
+}
+
+
+void fshader(
+    in float3 l_txcoord : TEXCOORD0,
+    in uniform sampler2DARRAY tx_deltaSR : TEXUNIT0,
+    in uniform sampler2DARRAY tx_deltaSM : TEXUNIT1,
+    out float4 o_color : COLOR)
+{
+    int layer = l_txcoord.z;
+    float4 ray = tex2DARRAY(tx_deltaSR, l_txcoord);
+    float4 mie = tex2DARRAY(tx_deltaSM, l_txcoord);
+    o_color = float4(ray.rgb, mie.r);
+}

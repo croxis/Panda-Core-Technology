@@ -1,0 +1,57 @@
+
+
+
+void vshader(
+    float4 vtx_position : POSITION,
+    uniform float4x4 mat_modelproj,
+    out float2 l_txcoord : TEXCOORD0,
+    out float4 l_position : POSITION)
+{
+    l_position=mul(mat_modelproj, vtx_position);
+    l_txcoord = (vtx_position.xz / 2.0) + 0.5;
+    
+}
+
+
+
+void fshader(
+    in float2 l_txcoord : TEXCOORD0,
+    in uniform sampler2D tx_transmittance : TEXUNIT0,
+    in uniform sampler2DARRAY tx_deltaSR : TEXUNIT1,
+    in uniform sampler2DARRAY tx_deltaSM : TEXUNIT2,
+    in uniform int first,
+    out float4 o_color : COLOR)
+{
+    float dphi = M_PI / float(IRRADIANCE_INTEGRAL_SAMPLES);
+    float dtheta = M_PI / float(IRRADIANCE_INTEGRAL_SAMPLES);
+
+    float r, muS;
+    getIrradianceRMuS(r, muS, l_txcoord.xy * float2(SKY_W, SKY_H));
+
+    float3 s = float3(max(sqrt(1.0 - muS * muS), 0.0), 0.0, muS);
+
+    float3 result = float3(0.0);
+    // integral over 2.PI around x with two nested loops over w directions (theta,phi)
+    for (int iphi = 0; iphi < 2 * IRRADIANCE_INTEGRAL_SAMPLES; ++iphi) {
+        float phi = (float(iphi) + 0.5) * dphi;
+        for (int itheta = 0; itheta < IRRADIANCE_INTEGRAL_SAMPLES / 2; ++itheta) {
+            float theta = (float(itheta) + 0.5) * dtheta;
+            float dw = dtheta * dphi * sin(theta);
+            float3 w = float3(cos(phi) * sin(theta), sin(phi) * sin(theta), cos(theta));
+            float nu = dot(s, w);
+            if (first == 1.0) {
+                // first iteration is special because Rayleigh and Mie were stored separately,
+                // without the phase functions factors; they must be reintroduced here
+                float pr1 = phaseFunctionR(nu);
+                float pm1 = phaseFunctionM(nu);
+                float3 ray1 = texture4D(tx_deltaSR, r, w.z, muS, nu).rgb;
+                float3 mie1 = texture4D(tx_deltaSM, r, w.z, muS, nu).rgb;
+                result += (ray1 * pr1 + mie1 * pm1) * w.z * dw;
+            } else {
+                result += texture4D(tx_deltaSR, r, w.z, muS, nu).rgb * w.z * dw;
+            }
+        }
+    }
+    o_color = float4(result,1) * DELTA_E_SF;
+
+}

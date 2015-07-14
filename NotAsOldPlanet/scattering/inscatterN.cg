@@ -1,0 +1,76 @@
+
+
+
+float3 integrand(float r, float mu, float muS, float nu, float t, sampler2DARRAY deltaJSampler, sampler2D tx_transmittance) {
+    float ri = sqrt(r * r + t * t + 2.0 * r * mu * t);
+    float mui = (r * mu + t) / ri;
+    float muSi = (nu * t + muS * r) / ri;
+    return (texture4D(deltaJSampler, ri, mui, muSi, nu).rgb / DELTA_J_SF) * transmittance(r, mu, t, tx_transmittance);
+}
+
+
+float3 inscatter(float r, float mu, float muS, float nu, sampler2DARRAY deltaJSampler, sampler2D tx_transmittance) {
+    float3 raymie = float3(0.0);
+    float dx = limit(r, mu) / float(INSCATTER_INTEGRAL_SAMPLES);
+    float xi = 0.0;
+    float3 raymiei = integrand(r, mu, muS, nu, 0.0, deltaJSampler, tx_transmittance);
+    for (int i = 1; i <= INSCATTER_INTEGRAL_SAMPLES; ++i) {
+        float xj = float(i) * dx;
+        float3 raymiej = integrand(r, mu, muS, nu, xj, deltaJSampler, tx_transmittance);
+        raymie += (raymiei + raymiej) / 2.0 * dx;
+        xi = xj;
+        raymiei = raymiej;
+    }
+    return raymie;
+}
+
+
+void vshader(
+    float4 vtx_position : POSITION,
+    uniform float4x4 mat_modelproj,
+    out float3 l_txcoord : TEXCOORD0,
+    out float4 l_position : POSITION)
+{
+    l_position = mul(mat_modelproj, vtx_position);
+    l_txcoord.xy = (vtx_position.xz / 2.0) + 0.5;
+    
+    l_txcoord.z = 0;
+}
+
+
+TRIANGLE void gshader(AttribArray<float4> position  : POSITION, 
+                      AttribArray<float4> texCoord : TEXCOORD0,
+                      uniform float4x4 mat_modelproj
+                      )
+{ 
+  for (int layer = 0;layer<ACTUAL_LAYERS;layer++) { // create n layers
+    for(int i=0; i<3; i++) {
+      float3 txcoord = float3(texCoord[i].xy, layer); 
+      emitVertex(position[i]  :POSITION,
+                 txcoord      :TEXCOORD0,
+                 layer        :LAYER);
+    }
+    restartStrip();
+  }
+}
+
+
+void fshader(
+    in float3 l_txcoord : TEXCOORD0,
+    in uniform sampler2D tx_transmittance : TEXUNIT0,
+    in uniform sampler2DARRAY tx_deltaJ : TEXUNIT1,
+    out float4 o_color : COLOR0
+    )
+{  
+    float2 fragCoord;
+    toFragCoord(l_txcoord.xy, float2(RES_RNU, RES_MU), fragCoord);
+    
+    float4 dhdH; float r;
+    getDhdhR(l_txcoord.z, dhdH, r);
+
+    float mu, muS, nu;
+    getMuMuSNu(r, dhdH, mu, muS, nu, fragCoord);
+    float3 result = inscatter(r, mu, muS, nu, tx_deltaJ, tx_transmittance);
+
+    o_color = float4(result,1);
+}

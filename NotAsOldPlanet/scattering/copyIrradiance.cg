@@ -1,0 +1,22 @@
+
+
+
+void vshader(
+    float4 vtx_position : POSITION,
+    uniform float4x4 mat_modelproj,
+    out float2 l_txcoord : TEXCOORD0,
+    out float4 l_position : POSITION)
+{
+    l_position=mul(mat_modelproj, vtx_position);
+    l_txcoord = (vtx_position.xz / 2.0) + 0.5;
+    
+}
+
+void fshader(
+    in float2 l_txcoord : TEXCOORD0,
+    in uniform sampler2D tx_deltaE : TEXUNIT0,
+    in uniform float k_k, // taking just "k" will let the application crash
+    out float4 o_color : COLOR)
+{
+    o_color = k_k * tex2D(tx_deltaE, l_txcoord);
+}
