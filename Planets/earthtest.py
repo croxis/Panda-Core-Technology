@@ -171,7 +171,7 @@ print("Skybox scale:", sandbox.base.camLens.get_far()*0.8)
 skybox.reparent_to(sandbox.base.render)
 
 sun_light = DirectionalLight()
-sun_light.setDirection(Vec3(10000, 0, 10))
+sun_light.setDirection(Vec3(-10000, 0, 10))
 sun_light.setPssmTarget(base.cam, base.camLens)
 sun_light.setColor(Vec3(1.0))
 sun_light.setShadowMapResolution(2048)
@@ -180,7 +180,7 @@ render_pipeline.addLight(sun_light)
 
 scattering = render_pipeline.getScattering()
 scattering.adjustSetting("atmosphereOffset", Vec3(0, pos, 0))
-scattering.adjustSetting("atmosphereScale", Vec3(1.05))
+scattering.adjustSetting("atmosphereScale", Vec3(1.0))
 render_pipeline.setScatteringSource(sun_light)
 
 sandbox.base.accept("f3", toggleSceneWireframe)
