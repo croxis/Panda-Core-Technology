@@ -3,11 +3,11 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
-__author__ = 'croxis'
 
 import os
 
-from panda3d.core import Material, Point3, Shader, Texture, VBase4, Vec3, VirtualFileSystem, TransparencyAttrib
+from panda3d.core import Material, NodePath, Point3, Shader, Texture, VBase4
+from panda3d.core import Vec3, VirtualFileSystem, TransparencyAttrib
 from panda3d.core import loadPrcFileData, loadPrcFile
 from direct.showbase.ShowBase import ShowBase
 
@@ -21,6 +21,8 @@ import appdirs
 from spacedrive.renderpipeline import DirectionalLight, RenderingPipeline
 import spacedrive.renderpipeline as renderpipeline
 ###                 ###
+
+__author__ = 'croxis'
 
 
 class Ring(Body):
@@ -134,11 +136,6 @@ database = {'atmosphere': 1,
             'rotation': 1,
             'type': 'solid'}
 
-from panda3d.core import NodePath, GeomVertexFormat, GeomVertexWriter, \
-  GeomVertexData, Geom, GeomTriangles, GeomNode, GeomTristrips
-
-
-
 
 if __name__ == '__main__':
     loadPrcFile("configuration.prc")
@@ -167,9 +164,6 @@ if __name__ == '__main__':
     #sandbox.base.camLens.set_far(100000)
     skybox = render_pipeline.getDefaultSkybox(scale=base.camLens.get_far()*0.8)
     skybox.set_scale(base.camLens.get_far()*0.8)
-    #skybox.set_shader(Shader.load(Shader.SLGLSL,
-    #    "Shader/DefaultShaders/Opaque/vertex.glsl",
-    #    "Shader/Skybox/fragment.glsl"))
     skybox.reparent_to(base.render)
 
     scale = 10
